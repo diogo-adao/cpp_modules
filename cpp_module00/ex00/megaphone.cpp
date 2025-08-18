@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
  
         while (i < argc)
         {   
-            int j = 0;
+            unsigned int j = 0;
             std::string arg = argv[i];
             while (j < arg.length())
             {
