@@ -9,7 +9,7 @@ class ClapTrap {
 	public:
 		ClapTrap(const std::string& n);
 		ClapTrap(const ClapTrap& original);
-		ClapTrap operator=(const ClapTrap& original);
+		ClapTrap& operator=(const ClapTrap& original);
 		~ClapTrap();
 
 		void attack(const std::string& target);

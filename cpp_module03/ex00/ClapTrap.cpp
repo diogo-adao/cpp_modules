@@ -16,7 +16,7 @@ ClapTrap::ClapTrap(const ClapTrap& original) {
 	atk_dmg = original.atk_dmg;
 }
 
-ClapTrap ClapTrap::operator=(const ClapTrap& original) {
+ClapTrap& ClapTrap::operator=(const ClapTrap& original) {
 	std::cout << "Copy assignment operator called" << std::endl;
 	if (&original != this)
 	{
