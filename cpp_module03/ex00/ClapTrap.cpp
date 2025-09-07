@@ -43,8 +43,8 @@ void ClapTrap::attack(const std::string& target)
 		std::cout << "ClapTrap " << name << " is tired or dead" << std::endl;
 
 	// Debug
-	std::cout << name << " Health: " << hit_pts << std::endl;
-	std::cout << name << " Energy: " << energy_pts << std::endl;
+/* 	std::cout << name << " Health: " << hit_pts << std::endl;
+	std::cout << name << " Energy: " << energy_pts << std::endl; */
 }
 
 void ClapTrap::takeDamage(unsigned int amount)
@@ -64,8 +64,8 @@ void ClapTrap::takeDamage(unsigned int amount)
 		std::cout << "ClapTrap " << name << " is already dead" << std::endl;
 
 	// Debug
-	std::cout << name << " Health: " << hit_pts << std::endl;
-	std::cout << name << " Energy: " << energy_pts << std::endl;
+/* 	std::cout << name << " Health: " << hit_pts << std::endl;
+	std::cout << name << " Energy: " << energy_pts << std::endl; */
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
@@ -86,6 +86,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << name << " is tired or dead" << std::endl;
 
 	// Debug
-	std::cout << name << " Health: " << hit_pts << std::endl;
-	std::cout << name << " Energy: " << energy_pts << std::endl;
+/* 	std::cout << name << " Health: " << hit_pts << std::endl;
+	std::cout << name << " Energy: " << energy_pts << std::endl; */
 }
