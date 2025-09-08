@@ -4,13 +4,14 @@ int main()
 {
 	ClapTrap trap1("Goku");
 	ScavTrap trap2("Freeza");
+	ScavTrap trap3(trap2);
 
-    trap1.attack("Freeza");
-    trap2.takeDamage(20);
-    trap2.attack("Goku");
-    trap2.beRepaired(10);
-    trap2.attack("Goku");
-    trap2.guardGate();
+	trap2 = ScavTrap("Vegeta");
+
+	trap1.attack("Freeza");
+	trap2.attack("Goku");
+	trap3.attack("Goku");
+	trap2.guardGate();
 
 	return (0);
 }
