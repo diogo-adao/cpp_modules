@@ -23,3 +23,8 @@ Animal::~Animal()
 {
 	std::cout << "[ANIMAL] Destructor Called" << std::endl;
 }
+
+std::string Animal::getType()
+{
+	return type;
+}

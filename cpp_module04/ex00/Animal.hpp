@@ -11,6 +11,8 @@ class Animal {
 		Animal(const Animal& src);
 		Animal& operator=(const Animal& src);
 		~Animal();
+
+		std::string getType();
 };
 
 #endif
