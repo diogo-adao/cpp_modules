@@ -16,7 +16,7 @@ WrongAnimal& WrongAnimal::operator=(const WrongAnimal& original)
 {
 	std::cout << "[WRONG ANIMAL] Copy Assignment Operator Called" << std::endl;
 	if (this != &original)
-		*this = original;
+		type = original.type;
 	return (*this);
 }
 
