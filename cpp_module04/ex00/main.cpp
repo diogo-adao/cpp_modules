@@ -16,7 +16,7 @@ int main()
 	j->makeSound();
 	meta->makeSound();
 
-	std::cout << "========== WRONG TEST ==========" << std::endl;
+	std::cout << "\n========== WRONG TEST ==========" << std::endl;
 	const WrongAnimal* wrong_meta = new WrongAnimal();
 	const WrongAnimal* wrong_i = new WrongCat();
 	std::cout << wrong_meta->getType() << " " << std::endl;
@@ -24,7 +24,7 @@ int main()
 	wrong_i->makeSound();
 	wrong_meta->makeSound();
 
-	std::cout << "========== SIMPLE TEST ==========" << std::endl;
+	std::cout << "\n========== SIMPLE TEST ==========" << std::endl;
 	Animal animal;
 	animal.makeSound();
 	Cat kitty;
@@ -35,7 +35,7 @@ int main()
 	std::cout << "kitty type: " << kitty.getType() << std::endl;
 	std::cout << "doggy type: " << doggy.getType() << std::endl;
 
-	std::cout << "========== DESTRUCTORS ==========" << std::endl;
+	std::cout << "\n========== DESTRUCTORS ==========" << std::endl;
 
 	delete meta;
 	delete j;

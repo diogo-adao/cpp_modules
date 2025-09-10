@@ -13,17 +13,17 @@ int main()
 	delete j; //should not create a leak
 	delete i;
 
-	std::cout << "========== TEST 1 ==========" << std::endl;
-    const int SIZE = 4;
-    Animal* animals[SIZE];
+	std::cout << "\n========== TEST 1 ==========" << std::endl;
+	const int SIZE = 4;
+	Animal* animals[SIZE];
 
-    for (int i = 0; i < SIZE; ++i)
-    {
-        if (i < SIZE / 2)
-            animals[i] = new Dog();
-        else
-            animals[i] = new Cat();
-    }
+	for (int i = 0; i < SIZE; ++i)
+	{
+		if (i < SIZE / 2)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
 
 	animals[0]->makeSound();
 	std::cout << "animal type: " << animals[0]->getType() << std::endl;
@@ -31,9 +31,9 @@ int main()
 	std::cout << "animal type: " << animals[2]->getType() << std::endl;
 
 	for (int i = 0; i < SIZE; ++i)
-        delete animals[i];
+		delete animals[i];
 
-	std::cout << "========== TEST 2 ==========" << std::endl;
+	std::cout << "\n========== TEST 2 ==========" << std::endl;
 	Dog* dog1 = new Dog();
 	dog1->getBrain()->setIdea(0, "Eat");
 	Dog* dog2 = new Dog(*dog1);
@@ -43,13 +43,13 @@ int main()
 	delete dog1;
 	delete dog2;
 
-	std::cout << "========== TEST 3 ==========" << std::endl;
+	std::cout << "\n========== TEST 3 ==========" << std::endl;
 	Cat* cat1 = new Cat();
 	cat1->getBrain()->setIdea(0, "Nap");
 	Cat* cat2 = new Cat(*cat1);
 	cat1->getBrain()->setIdea(0, "Play");
 	std::cout << cat2->getBrain()->getIdea(0) << std::endl;
-	
+
 	delete cat1;
 	delete cat2;
 
