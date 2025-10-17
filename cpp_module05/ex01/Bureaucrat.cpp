@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 // CONSTRUCTOR
 Bureaucrat::Bureaucrat(const std::string& n, int g) : name(n), grade(g)
@@ -18,15 +19,29 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& src)
     if (&src != this)
         grade = src.grade;
 
+    std::cout << "Copy assignment operator called" << std::endl;
     return *this;
 }
 
 // DESTRUCTOR
 Bureaucrat::~Bureaucrat() {}
 
-// GETTERS
+// GETTERS & SETTERS
 std::string Bureaucrat::getName() const { return name; }
 int Bureaucrat::getGrade() const { return grade; }
+
+void Bureaucrat::signForm(Form& f)
+{
+    try
+    {
+        f.beSigned(*this);
+        std::cout << name << " signed " << f.getName() << std::endl;
+    }
+    catch (std::exception& e)
+    {
+        std::cout << name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+    }
+}
 
 // CHANGE GRADE
 void Bureaucrat::raiseGrade()

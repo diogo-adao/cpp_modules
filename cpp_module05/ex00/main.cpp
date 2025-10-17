@@ -10,9 +10,8 @@ int main()
     }
     catch (const std::exception& e)
     {
-        std::cerr << "Error: " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
-
 
     std::cout << "========= INVALID CREATION TEST =========" << std::endl;
     try
@@ -33,7 +32,6 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
-
     std::cout << "========= GRADE CHANGES TEST =========" << std::endl;
     try 
     {
@@ -46,7 +44,7 @@ int main()
     {
         std::cerr << e.what() << std::endl;
     }
-    std::cout << std::endl;
+
     try 
     {
         Bureaucrat e("Eve", 149);
