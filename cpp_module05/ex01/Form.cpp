@@ -24,7 +24,6 @@ Form& Form::operator=(const Form& src)
 // DESTRUCTOR
 Form::~Form() {}
 
-
 //GETTERS & SETTERS
 std::string Form::getName() const { return name; }
 bool Form::getStatus() const { return status; }
