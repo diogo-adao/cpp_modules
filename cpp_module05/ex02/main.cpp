@@ -14,7 +14,7 @@ int main()
     std::cout << "========= FORMS CREATION =========\n";
     ShrubberyCreationForm shrub("Garden");
     RobotomyRequestForm robot("Marvin");
-    PresidentialPardonForm pardon("Zaphod");
+    PresidentialPardonForm pardon("Arthur");
 
     std::cout << shrub << std::endl;
     std::cout << robot << std::endl;

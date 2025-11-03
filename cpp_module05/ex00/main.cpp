@@ -26,14 +26,14 @@ int main()
     try
     {
         Bureaucrat c("Charlie", 200);
-    } 
+    }
     catch (const std::exception& e)
     {
         std::cerr << e.what() << std::endl;
     }
 
     std::cout << "========= GRADE CHANGES TEST =========" << std::endl;
-    try 
+    try
     {
         Bureaucrat d("David", 2);
         d.raiseGrade();
@@ -45,9 +45,9 @@ int main()
         std::cerr << e.what() << std::endl;
     }
 
-    try 
+    try
     {
-        Bureaucrat e("Eve", 149);
+        Bureaucrat e("Emily", 149);
         e.lowerGrade();
         std::cout << e << std::endl;
         e.lowerGrade();
