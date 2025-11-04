@@ -1,10 +1,11 @@
 #ifndef SCALAR_CONVERTER_HPP
 #define SCALAR_CONVERTER_HPP
 
-#include <string>
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <cerrno>
+#include <limits>
 
 class ScalarConverter {
     public:

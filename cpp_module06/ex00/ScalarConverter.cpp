@@ -82,7 +82,7 @@ void ScalarConverter::convert(const std::string& literal)
         errno = 0;
         long value = strtol(literal.c_str(), NULL, 10);
 
-        if (errno == ERANGE || value < INT_MIN || value > INT_MAX)
+        if (errno == ERANGE || value < std::numeric_limits<int>::min() || value > std::numeric_limits<int>::max())
         {
             std::cout << "char: impossible" << std::endl;
             std::cout << "int: impossible" << std::endl;
@@ -136,7 +136,7 @@ void ScalarConverter::convert(const std::string& literal)
         else
             std::cout << "char: '" << c << "'" << std::endl;
 
-        if (f < INT_MIN || f > INT_MAX)
+        if (f < std::numeric_limits<int>::min() || f > std::numeric_limits<int>::max())
             std::cout << "int: impossible" << std::endl;
         else
             std::cout << "int: " << i << std::endl;
@@ -169,7 +169,7 @@ void ScalarConverter::convert(const std::string& literal)
         else
             std::cout << "char: '" << c << "'" << std::endl;
 
-        if (d < INT_MIN || d > INT_MAX)
+        if (d < std::numeric_limits<int>::min() || d > std::numeric_limits<int>::max())
             std::cout << "int: impossible" << std::endl;
         else
             std::cout << "int: " << i << std::endl;
