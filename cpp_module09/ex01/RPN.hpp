@@ -2,5 +2,9 @@
 #define RPN_HPP
 
 #include <iostream>
+#include <stack>
+#include <cstdlib>
+
+void rpn(std::string str);
 
 #endif
