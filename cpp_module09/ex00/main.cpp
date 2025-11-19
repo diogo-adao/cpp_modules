@@ -4,8 +4,9 @@ int main(int argc, char *argv[])
 {
 	if (argc == 2)
 	{
-		loadDB();
-		readInput(argv[1]);
+		std::map<std::string, std::string> db;
+		db = loadDB();
+		readInput(argv[1], db);
 	}
 	else
 	{

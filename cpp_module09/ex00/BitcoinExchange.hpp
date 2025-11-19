@@ -7,9 +7,10 @@
 #include <map>
 #include <stdlib.h>
 #include <cctype>
+#include <sstream>
 
-void loadDB();
-void readInput(std::string input);
+std::map<std::string, std::string> loadDB();
+void readInput(std::string input, const std::map<std::string, std::string> &db);
 
 
 #endif

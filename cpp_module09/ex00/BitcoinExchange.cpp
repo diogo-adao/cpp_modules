@@ -1,6 +1,6 @@
 #include "BitcoinExchange.hpp"
 
-void loadDB()
+std::map<std::string, std::string> loadDB()
 {
 	std::ifstream data("data.csv");
 	std::map<std::string, std::string> db;
@@ -13,6 +13,23 @@ void loadDB()
 		getline(data, price);
 		db.insert(std::make_pair(date, price));
 	}
+
+	return db;
+}
+
+static std::string trim(const std::string& s)
+{
+	size_t start = 0;
+
+	while (start < s.size() && isspace(s[start]))
+		start++;
+
+	size_t end = s.size();
+
+	while (end > start && isspace(s[end - 1]))
+		end--;
+
+	return s.substr(start, end - start);
 }
 
 static bool parseDate(const std::string& s, int& year, int& month, int& day)
@@ -46,21 +63,6 @@ static bool parseDate(const std::string& s, int& year, int& month, int& day)
 	return true;
 }
 
-static std::string trim(const std::string& s)
-{
-	size_t start = 0;
-
-	while (start < s.size() && isspace(s[start]))
-		start++;
-
-	size_t end = s.size();
-
-	while (end > start && isspace(s[end - 1]))
-		end--;
-
-	return s.substr(start, end - start);
-}
-
 static bool parseValue(const std::string& s, float& value)
 {
 	if (s.empty())
@@ -78,9 +80,9 @@ static bool parseValue(const std::string& s, float& value)
 			dotFound = true;
 		}
 		else if (i == 0 && c == '-')
-        {
-            continue;
-        }
+		{
+			continue;
+		}
 		else if (!std::isdigit(c))
 		{
 			return false;
@@ -97,7 +99,21 @@ static bool parseValue(const std::string& s, float& value)
 	return true;
 }
 
-void readInput(std::string input)
+double exchange(float value, const std::string &date, const std::map<std::string, std::string> &db)
+{
+	std::map<std::string, std::string>::const_iterator it = db.lower_bound(date);
+
+	if (it == db.end() || it->first != date)
+		--it;
+
+	std::stringstream ss(it->second);
+	double rate;
+	ss >> rate;
+
+	return static_cast<double>(value) * rate;
+}
+
+void readInput(std::string input, const std::map<std::string, std::string> &db)
 {
 	std::ifstream myFile(input.c_str());
 	std::string date;
@@ -118,7 +134,7 @@ void readInput(std::string input)
 		size_t pos = line.find('|');
 		if (pos == std::string::npos)
 		{
-			std::cout << "Error: invalid format" << std::endl;
+			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 
@@ -127,21 +143,21 @@ void readInput(std::string input)
 
 		if (!parseDate(date, y, m, d))
 		{
-			std::cout << "Error: bad input => " << date << std::endl;
+			std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 
 		if (!parseValue(value, val))
 		{
 			if (val < 0)
-        		std::cout << "Error: not a positive number." << std::endl;
-    		else if (val > 1000)
-        		std::cout << "Error: too large a number." << std::endl;
+				std::cout << "Error: not a positive number." << std::endl;
+			else if (val > 1000)
+				std::cout << "Error: too large a number." << std::endl;
 			else
-				std::cout << "Error: bad input => " << value << std::endl;
+				std::cout << "Error: bad input => " << line << std::endl;
 			continue;
 		}
 
-		std::cout << date << " => " << value << std::endl;
+		std::cout << date << " => " << value << " = " << exchange(val, date, db) << std::endl;
 	}
 }
