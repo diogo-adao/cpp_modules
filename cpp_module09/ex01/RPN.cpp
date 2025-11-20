@@ -1,93 +1,68 @@
 #include "RPN.hpp"
 
-static std::string trim(const std::string& s)
-{
-	size_t start = 0;
-
-	while (start < s.size() && isspace(s[start]))
-		start++;
-
-	size_t end = s.size();
-
-	while (end > start && isspace(s[end - 1]))
-		end--;
-
-	return s.substr(start, end - start);
-}
-
 void rpn(std::string str)
 {
 	std::stack<int> nums;
-	std::string t = trim(str);
-	int n1;
-	int n2;
-	int res;
-
 	size_t i = 0;
-	int n;
+	int n, n1, n2, res;
+	bool saw_operator = false;
 
-	while (i < t.size())
+	while (i < str.size())
 	{
-		while (isspace(t[i]))
+		while (i < str.size() && isspace(static_cast<unsigned char>(str[i])))
 			i++;
-		if (!isdigit(t[i]) && (t[i] != '+' && t[i] != '-' && t[i] != '*' && t[i] != '/'))
+		if (i >= str.size())
+			break;
+
+		char c = str[i];
+
+		if (!isdigit(static_cast<unsigned char>(c)) && c != '+' && c != '-' && c != '*' && c != '/')
 		{
 			std::cout << "Error" << std::endl;
 			return;
 		}
-		if (t[i] == '+' || t[i] == '-' || t[i] == '*' || t[i] == '/')
+
+		if (c == '+' || c == '-' || c == '*' || c == '/')
 		{
+			saw_operator = true;
 			if (nums.size() >= 2)
 			{
-				if (t[i] == '+')
+				n1 = nums.top(); nums.pop();
+				n2 = nums.top(); nums.pop();
+				if (c == '+') res = n2 + n1;
+				else if (c == '-') res = n2 - n1;
+				else if (c == '*') res = n2 * n1;
+				else
 				{
-					n1 = nums.top();
-					nums.pop();
-					n2 = nums.top();
-					nums.pop();
-					res = n2 + n1;
-					nums.push(res);
-				}
-				else if (t[i] == '-')
-				{
-					n1 = nums.top();
-					nums.pop();
-					n2 = nums.top();
-					nums.pop();
-					res = n2 - n1;
-					nums.push(res);
-				}
-				else if (t[i] == '*')
-				{
-					n1 = nums.top();
-					nums.pop();
-					n2 = nums.top();
-					nums.pop();
-					res = n2 * n1;
-					nums.push(res);
-				}
-				else if (t[i] == '/')
-				{
-					n1 = nums.top();
-					nums.pop();
-					n2 = nums.top();
-					nums.pop();
+					if (n1 == 0)
+					{
+						std::cout << "Division by zero: undefined" << std::endl;
+						return;
+					}
 					res = n2 / n1;
-					nums.push(res);
 				}
+				nums.push(res);
 			}
 			else
 			{
-				std::cout << "Error: Not enough operands" << std::endl;
+				std::cout << "Error" << std::endl;
 				return;
 			}
 		}
-		if (isdigit(t[i]))
+		else if (isdigit(static_cast<unsigned char>(c)))
 		{
-			n = t[i] - '0';
+			n = c - '0';
 			nums.push(n);
 		}
+
 		i++;
 	}
-	std::cout << res << std::endl;
+
+	if (nums.size() != 1 || !saw_operator)
+	{
+		std::cout << "Error" << std::endl;
+		return;
+	}
+
+	std::cout << nums.top() << std::endl;
 }
