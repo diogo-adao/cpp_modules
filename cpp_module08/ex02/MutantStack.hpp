@@ -11,7 +11,7 @@ class MutantStack : public std::stack<T> {
         MutantStack(const MutantStack& src) : std::stack<T>(src) {}
         MutantStack& operator=(const MutantStack& src) {
             if (this != &src)
-                std::stack<T>::operator=(src); 
+                std::stack<T>::operator=(src);
             return *this;
         }
         ~MutantStack() {}
@@ -20,7 +20,6 @@ class MutantStack : public std::stack<T> {
 
         iterator begin() { return this->c.begin(); }
         iterator end() { return this->c.end(); }
-
 };
 
 #endif

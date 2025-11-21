@@ -20,7 +20,7 @@ int main()
 
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
-    
+
     ++it;
     --it;
     while (it != ite)
@@ -31,3 +31,5 @@ int main()
     std::stack<int> s(mstack);
     return 0;
 }
+
+
